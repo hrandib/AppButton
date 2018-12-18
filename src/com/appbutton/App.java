@@ -1,6 +1,7 @@
 package com.appbutton;
 
 import java.io.FileOutputStream;
+import java.io.File;
 
 import javax.swing.*;
 
@@ -10,16 +11,26 @@ public class App {
     private static FileOutputStream outPort;
 
     public App() {
-        mSendEventButton.addActionListener(actionEvent -> {
-//            JOptionPane.showMessageDialog(null, "The Message");
-            tx();
-        });
+        mSendEventButton.addActionListener(actionEvent -> tx());
     }
 
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            outPort = new FileOutputStream("/home/dmytro/tty_master");
+            if(args.length == 0) {
+                final String message = "The first argument should be the path to a serial port";
+                JOptionPane.showMessageDialog(null, message);
+                System.out.println(message);
+                System.exit(3);
+            }
+            File file = new File(args[0]);
+            if(!file.exists()) {
+                final String message = "The port is not exist";
+                JOptionPane.showMessageDialog(null, message);
+                System.out.println(message);
+                System.exit(4);
+            }
+            outPort = new FileOutputStream(file);
         } catch(Exception e) {
             System.out.println(e.getMessage());
             System.exit(2);
@@ -27,6 +38,17 @@ public class App {
         JFrame frame = new JFrame("App");
         frame.setContentPane(new App().panelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                try {
+                    outPort.close();
+                } catch(Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                System.exit(0);
+            }
+        });
         frame.pack();
         frame.setVisible(true);
     }
