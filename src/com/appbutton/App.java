@@ -49,7 +49,8 @@ public class App {
                 System.exit(0);
             }
         });
-        frame.pack();
+        frame.setResizable(false);
+        frame.setSize(100, 100);
         frame.setVisible(true);
     }
 
