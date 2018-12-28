@@ -1,7 +1,7 @@
 0. Android application
   - Create a gui with two buttons (open and play/pause) and text field.
-  - Implement handling of two buttons:
-    By pushing open button get link on mp3 file or internet-radio from text field and start play. (Use android.media.MediaPlayer).
+  - Implement handling of two buttons:  
+    By pushing open button get link on mp3 file or internet-radio from text field and start play. (Use android.media.MediaPlayer).  
     By pressing the pause / play button, stop playing or start playing music or radio.
 
 1. Build kernel for the emulator
@@ -9,7 +9,7 @@
      git clone https://android.googlesource.com/kernel/goldfish  
      git checkout origin/android-goldfish-3.18  
      make x86_64_ranchu_defconfig
-  - Enable kernel modules loading
+  - Enable kernel modules loading  
      make menuconfig
 3. Build emulator image  
     References:  
@@ -39,9 +39,9 @@
 
     In the makefile we need to use the path to the kernel from 1st point.
 
-    adb root && adb remount
-    adb push module.ko /vendor/lib/modules/
-    adb shell insmod /vendor/lib/modules/module.ko
+    adb root && adb remount  
+    adb push module.ko /vendor/lib/modules/  
+    adb shell insmod /vendor/lib/modules/module.ko  
 
 6. Implement serial event capture and futher uevent generation in the kernel module.
 
