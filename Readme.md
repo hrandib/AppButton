@@ -14,16 +14,18 @@
      *make x86_64_ranchu_defconfig*
   - Enable kernel modules loading  
      *make menuconfig*  
-     You should select modules loading in the menu
+     You should select modules loading in the menu.  
+  - Build kernel  
+     *make -j4*
 2. Build emulator image.  
     You need to setup environment as described in these links, step by step:  
   - References:  
     https://source.android.com/setup/build/initializing  
-    https://source.android.com/setup/build/downloading.html  
-    Possible issues may occur if skipped some steps.
+    https://source.android.com/setup/build/downloading  
+    Possible issues may occur if skipped some steps. "repo init" should be called with args from next step.
   - Get sources  
     *repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r53*  
-    *repo sync -j4*
+    *repo sync -c -j4*
     
     *. build/envsetup.sh*
     *lunch aosp_x86_64-eng*
