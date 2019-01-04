@@ -27,7 +27,10 @@
     *repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r53*  
     *repo sync -c -j4*
     
-    *. build/envsetup.sh*
+    If used Ubuntu 18.04 or above you need one more step at this point:
+    *export LC_ALL=C*
+
+    *source build/envsetup.sh*
     *lunch aosp_x86_64-eng*
 
     *make -j4*
