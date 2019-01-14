@@ -30,7 +30,7 @@
     If used Ubuntu 18.04 or above you need one more step at this point:
     *export LC_ALL=C*
 
-    *source build/envsetup.sh*
+    *source build/envsetup.sh*  
     *lunch aosp_x86_64-eng*
 
     *make -j4*
